@@ -343,8 +343,8 @@ export default function BacktestPage() {
                     <ReferenceLine y={parseFloat(initialCapital)} stroke="#9ca3af" strokeDasharray="5 5" label={{ value: 'Initial', position: 'right', fill: '#9ca3af', fontSize: 12 }} />
                     <Line type="monotone" dataKey="aiEquity" stroke="#a855f7" strokeWidth={2} dot={false} name="aiEquity" />
                     <Line type="monotone" dataKey="buyHoldEquity" stroke="#6b7280" strokeWidth={2} dot={false} strokeDasharray="5 5" name="buyHoldEquity" />
-                    <Scatter dataKey="aiEquity" data={chartData.filter((d) => d.signalAction === 'ENTER')} fill="#22c55e" shape="triangle" />
-                    <Scatter dataKey="aiEquity" data={chartData.filter((d) => d.signalAction === 'EXIT')} fill="#ef4444" shape="triangle" />
+                    <Scatter dataKey="aiEquity" data={chartData.filter((d) => 'signalAction' in d && d.signalAction === 'ENTER')} fill="#22c55e" shape="triangle" />
+                    <Scatter dataKey="aiEquity" data={chartData.filter((d) => 'signalAction' in d && d.signalAction === 'EXIT')} fill="#ef4444" shape="triangle" />
                   </ComposedChart>
                 ) : (
                   <LineChart data={result.equity_curve} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
