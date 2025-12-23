@@ -1,0 +1,33 @@
+# Web Framework
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+
+# Data Validation
+pydantic>=2.10.0
+pydantic-settings>=2.1.0
+
+# Stock Data
+yfinance>=0.2.36
+
+# AI/LLM
+mistralai>=1.0.0
+
+# Database
+neo4j>=5.16.0
+redis>=5.0.1
+
+# HTTP Client
+httpx>=0.28.0
+
+# Environment
+python-dotenv>=1.0.0
+
+# Configuration
+pyyaml>=6.0.1
+
+# Circuit Breaker
+circuitbreaker>=2.0.0
+
+# Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

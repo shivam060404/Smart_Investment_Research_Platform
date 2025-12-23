@@ -1,0 +1,396 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-success: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --gradient-danger: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+    --gradient-warning: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-dark: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+  }
+
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    @apply antialiased text-base;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* Increase base font sizes */
+  p, span, div {
+    @apply text-base;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-5xl xl:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-xl lg:text-2xl;
+  }
+
+  h4 {
+    @apply text-lg lg:text-xl;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
+
+@layer components {
+  /* Glass morphism card */
+  .glass-card {
+    @apply rounded-2xl border backdrop-blur-xl;
+    background: var(--glass-bg);
+    border-color: var(--glass-border);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Premium card with gradient border */
+  .premium-card {
+    @apply relative rounded-2xl overflow-hidden;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(20px);
+  }
+
+  .premium-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  }
+
+  .gradient-text-success {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  }
+
+  .gradient-text-danger {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply relative px-6 py-3 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  }
+
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  /* Input styles */
+  .input-glass {
+    @apply w-full px-5 py-4 rounded-xl text-white placeholder-gray-400 transition-all duration-300;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+
+  .input-glass:focus {
+    @apply outline-none;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(102, 126, 234, 0.5);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+  }
+
+  /* Select dropdown styling */
+  select.input-glass {
+    @apply cursor-pointer appearance-none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%239ca3af'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.5rem;
+    padding-right: 3rem;
+  }
+
+  select.input-glass option {
+    @apply text-gray-900 bg-white py-2;
+  }
+
+  select.input-glass option:hover,
+  select.input-glass option:focus,
+  select.input-glass option:checked {
+    @apply bg-purple-100 text-purple-900;
+  }
+
+  /* Recommendation badges */
+  .badge-buy {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider;
+    background: linear-gradient(135deg, rgba(17, 153, 142, 0.2) 0%, rgba(56, 239, 125, 0.2) 100%);
+    color: #38ef7d;
+    border: 1px solid rgba(56, 239, 125, 0.3);
+    box-shadow: 0 0 20px rgba(56, 239, 125, 0.2);
+  }
+
+  .badge-sell {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider;
+    background: linear-gradient(135deg, rgba(235, 51, 73, 0.2) 0%, rgba(244, 92, 67, 0.2) 100%);
+    color: #f45c43;
+    border: 1px solid rgba(244, 92, 67, 0.3);
+    box-shadow: 0 0 20px rgba(244, 92, 67, 0.2);
+  }
+
+  .badge-hold {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider;
+    background: linear-gradient(135deg, rgba(240, 147, 251, 0.2) 0%, rgba(245, 87, 108, 0.2) 100%);
+    color: #f5a623;
+    border: 1px solid rgba(245, 166, 35, 0.3);
+    box-shadow: 0 0 20px rgba(245, 166, 35, 0.2);
+  }
+
+  /* Score indicators */
+  .score-high {
+    color: #38ef7d;
+    text-shadow: 0 0 20px rgba(56, 239, 125, 0.5);
+  }
+
+  .score-medium {
+    color: #f5a623;
+    text-shadow: 0 0 20px rgba(245, 166, 35, 0.5);
+  }
+
+  .score-low {
+    color: #f45c43;
+    text-shadow: 0 0 20px rgba(244, 92, 67, 0.5);
+  }
+
+  /* Animated gradient background */
+  .animated-gradient {
+    background: linear-gradient(-45deg, #0a0a1a, #1a1a2e, #16213e, #0f3460);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Pulse animation for loading */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.6); }
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    @apply relative overflow-hidden;
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+
+  /* Stat card */
+  .stat-card {
+    @apply glass-card p-6;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold text-white;
+  }
+
+  .stat-label {
+    @apply text-sm text-gray-400 mt-1;
+  }
+
+  /* Navigation link */
+  .nav-link {
+    @apply relative px-4 py-2 text-gray-300 font-medium transition-all duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-white;
+  }
+
+  .nav-link.active {
+    @apply text-white;
+  }
+
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+  }
+
+  /* Agent card */
+  .agent-card {
+    @apply glass-card p-5 transition-all duration-300;
+  }
+
+  .agent-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .agent-icon {
+    @apply w-12 h-12 rounded-xl flex items-center justify-center text-white;
+  }
+
+  .agent-icon.fundamental {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .agent-icon.technical {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  }
+
+  .agent-icon.sentiment {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .agent-icon.risk {
+    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  }
+
+  /* Progress bar */
+  .progress-bar {
+    @apply h-2 rounded-full overflow-hidden;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .progress-fill {
+    @apply h-full rounded-full transition-all duration-500;
+  }
+
+  .progress-fill.success {
+    background: linear-gradient(90deg, #11998e 0%, #38ef7d 100%);
+    box-shadow: 0 0 10px rgba(56, 239, 125, 0.5);
+  }
+
+  .progress-fill.warning {
+    background: linear-gradient(90deg, #f5a623 0%, #f093fb 100%);
+    box-shadow: 0 0 10px rgba(245, 166, 35, 0.5);
+  }
+
+  .progress-fill.danger {
+    background: linear-gradient(90deg, #eb3349 0%, #f45c43 100%);
+    box-shadow: 0 0 10px rgba(244, 92, 67, 0.5);
+  }
+
+  /* Confidence gauge */
+  .gauge-container {
+    @apply relative w-48 h-24 overflow-hidden;
+  }
+
+  .gauge-bg {
+    @apply absolute inset-0;
+    background: conic-gradient(
+      from 180deg,
+      rgba(255, 255, 255, 0.1) 0deg,
+      rgba(255, 255, 255, 0.1) 180deg
+    );
+    border-radius: 100px 100px 0 0;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px currentColor;
+  }
+
+  .backdrop-blur-glass {
+    backdrop-filter: blur(20px);
+  }
+}

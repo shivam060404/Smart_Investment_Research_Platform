@@ -1,0 +1,34 @@
+# MCP Server Configuration
+# This file defines the configuration for all MCP (Model Context Protocol) servers
+# used by the AI Investment Research Platform.
+
+servers:
+  yfinance:
+    enabled: true
+    transport: "stdio"
+    command: "python -m app.mcp_servers.yfinance_server"
+    timeout_seconds: 30
+
+  news:
+    enabled: true
+    transport: "stdio"
+    command: "python -m app.mcp_servers.news_server"
+    timeout_seconds: 15
+
+  technical:
+    enabled: true
+    transport: "stdio"
+    command: "python -m app.mcp_servers.technical_server"
+    timeout_seconds: 20
+
+  neo4j:
+    enabled: true
+    transport: "stdio"
+    command: "python -m app.mcp_servers.neo4j_server"
+    timeout_seconds: 30
+
+  backtesting:
+    enabled: true
+    transport: "stdio"
+    command: "python -m app.mcp_servers.backtest_server"
+    timeout_seconds: 60

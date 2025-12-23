@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+.pnpm-store/
+
+# Build outputs
+.next/
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+coverage/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# API Keys and Secrets
+.env
+.env.local
+.env.*.local
+
+# Docker
+*.tar
+
+# Misc
+*.bak
+*.tmp
